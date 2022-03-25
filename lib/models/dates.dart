@@ -1,120 +1,160 @@
-class Date{
+class Date {
   int day;
   bool isTask;
   bool isMonth;
 
-  Date(
-      {required this.day,
-      this.isTask = false,
-  this.isMonth = false}
-  );
+  Date({required this.day, this.isTask = false, this.isMonth = false});
 }
-List <Date> DataCustom = [
-  Date(day: 28,
+
+List<Date> DataCustom = [
+  Date(
+    day: 28,
+  ),
+  Date(
+    day: 29,
   ),
   Date(
     day: 30,
     isTask: true,
   ),
-  Date(day: 31,
+  Date(
+    day: 31,
   ),
-  Date(day: 1,
+  Date(
+    day: 1,
     isMonth: true,
     isTask: true,
   ),
-  Date(day: 2,
+  Date(
+    day: 2,
     isMonth: true,
   ),
-  Date(day: 3,
+  Date(
+    day: 3,
     isMonth: true,
   ),
-  Date(day: 4,
+  Date(
+    day: 4,
     isMonth: true,
   ),
-  Date(day: 5,
+  Date(
+    day: 5,
     isMonth: true,
   ),
-  Date(day: 6,
+  Date(
+    day: 6,
     isTask: true,
     isMonth: true,
   ),
-  Date(day: 7,
+  Date(
+    day: 7,
     isTask: true,
     isMonth: true,
   ),
-  Date(day: 8,
+  Date(
+    day: 8,
     isMonth: true,
   ),
-  Date(day: 9,
+  Date(
+    day: 9,
     isMonth: true,
   ),
-  Date(day: 10,
+  Date(
+    day: 10,
     isMonth: true,
   ),
-  Date(day: 11,
+  Date(
+    day: 11,
     isMonth: true,
   ),
-  Date(day: 12,
+  Date(
+    day: 12,
     isMonth: true,
   ),
-  Date(day: 13,
+  Date(
+    day: 13,
     isMonth: true,
   ),
-  Date(day: 14,
+  Date(
+    day: 14,
     isTask: true,
     isMonth: true,
   ),
-  Date(day: 15,
+  Date(
+    day: 15,
     isTask: true,
     isMonth: true,
   ),
-  Date(day: 16,
+  Date(
+    day: 16,
     isMonth: true,
   ),
-  Date(day: 17,
+  Date(
+    day: 17,
     isMonth: true,
   ),
-  Date(day: 18,
+  Date(
+    day: 18,
     isMonth: true,
   ),
-  Date(day: 19,
-  ),
-  Date(day: 20,
+  Date(
+    day: 19,
     isMonth: true,
   ),
-  Date(day: 21,
+  Date(
+    day: 20,
     isMonth: true,
   ),
-  Date(day: 22,
+  Date(
+    day: 21,
+    isMonth: true,
+  ),
+  Date(
+    day: 22,
+    isMonth: true,
+    isTask: true,
+  ),
+  Date(
+    day: 23,
+    isMonth: true,
+  ),
+  Date(
+    day: 24,
+    isMonth: true,
+  ),
+  Date(
+    day: 25,
+    isMonth: true,
+  ),
+  Date(
+    day: 26,
+    isMonth: true,
+  ),
+  Date(
+    day: 27,
+    isMonth: true,
+  ),
+  Date(
+    day: 28,
+    isMonth: true,
+  ),
+  Date(
+    day: 29,
+    isMonth: true,
+  ),
+  Date(
+    day: 30,
+    isMonth: true,
+  ),
+  Date(
+    day: 31,
     isMonth: true,
     isTask: true,
   ),
-  Date(day: 23,
-    isMonth: true,
+  Date(
+    day: 1,
   ),
-  Date(day: 24,
-    isMonth: true,
-  ),
-  Date(day: 25,
-    isMonth: true,
-  ),
-  Date(day: 26,
-    isMonth: true,
-  ),
-  Date(day: 27,
-    isMonth: true,
-  ),
-  Date(day: 28,
-    isMonth: true,
-  ),
-  Date(day: 29,
-    isMonth: true,
-  ),
-  Date(day: 30,
-    isMonth: true,
-  ),
-  Date(day: 31,
-    isMonth: true,
-    isTask: true,
+  Date(
+    day: 2,
   ),
 ];

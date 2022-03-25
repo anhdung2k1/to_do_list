@@ -6,7 +6,6 @@ class HeadDate extends StatelessWidget{
 }) : super(key:key);
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Padding(
       padding: const EdgeInsets.symmetric(
         vertical: 6,

@@ -88,7 +88,7 @@ class _BodyState extends State<Body> {
                         ),
                         SizedBox(height: 10),
                         Container(
-                          height: 300,
+                          height: 250,
                           child: Stack(
                             children: <Widget>[
                               Positioned(
