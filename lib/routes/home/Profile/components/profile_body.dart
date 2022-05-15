@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_list/models/profile.dart';
 import 'package:to_do_list/routes/home/Profile/components/statistic_card.dart';
 import 'package:to_do_list/routes/home/Profile/components/task_card.dart';
 import 'package:to_do_list/routes/home/Profile/components/user_inform.dart';
+
+import '../../../../data/models/profile.dart';
 
 class ProfileBody extends StatelessWidget {
   const ProfileBody({Key? key}) : super(key: key);

@@ -25,45 +25,48 @@ class MenuBody extends StatelessWidget {
               crossAxisSpacing: 13,
               mainAxisSpacing: 24),
           itemBuilder: (BuildContext context, int index) {
-            return Container(
-              height: 180,
-              width: 165,
-              decoration: BoxDecoration(
-                color: kWhiteTextColor,
-                borderRadius: BorderRadius.circular(5),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.white70,
-                    spreadRadius: 5,
-                    blurRadius: 5,
-                    offset: Offset(0, 3),
-                  )
-                ],
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: Stack(
-                      children: [
-                        Image.asset("assets/icons/Oval_Outlined.png"),
-                        Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 6, vertical: 6),
-                            child: Image.asset(ImagePath[index])),
-                      ],
+            return InkWell(
+              onTap: () {},
+              child: Container(
+                height: 180,
+                width: 165,
+                decoration: BoxDecoration(
+                  color: kWhiteTextColor,
+                  borderRadius: BorderRadius.circular(5),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.white70,
+                      spreadRadius: 5,
+                      blurRadius: 5,
+                      offset: Offset(0, 3),
+                    )
+                  ],
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: Stack(
+                        children: [
+                          Image.asset("assets/icons/Oval_Outlined.png"),
+                          Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 6, vertical: 6),
+                              child: Image.asset(ImagePath[index])),
+                        ],
+                      ),
                     ),
-                  ),
-                  AppTextTitle(
-                      text: "${ProjectName[index]}",
-                      fontsize: 18,
-                      textColor: kTextColor),
-                  AppTextTitle(
-                      text: "${TaskNums[index]} Tasks",
-                      fontsize: 16,
-                      textColor: Color(0xFF9A9A9A))
-                ],
+                    AppTextTitle(
+                        text: "${ProjectName[index]}",
+                        fontsize: 18,
+                        textColor: kTextColor),
+                    AppTextTitle(
+                        text: "${TaskNums[index]} Tasks",
+                        fontsize: 16,
+                        textColor: Color(0xFF9A9A9A))
+                  ],
+                ),
               ),
             );
           }),

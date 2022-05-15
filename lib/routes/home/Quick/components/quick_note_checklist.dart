@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_list/models/quick.dart';
+import 'package:to_do_list/data/models/quick.dart';
 
 import 'note_icon.dart';
 

@@ -145,7 +145,8 @@ class _AddCheckListBodyState extends State<AddCheckListBody> {
                               ],
                             ),
                           ),
-                          AddTaskButton(title: "Done", press: () {})
+                          AddTaskButton(title: "Done", press: () {}),
+                          SizedBox(height: 80)
                         ],
                       ),
                     ),

@@ -1,5 +1,8 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:to_do_list/bloc/bloc/task_bloc.dart';
 import 'package:to_do_list/constant/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:to_do_list/data/models/tasks.dart';
 import 'package:to_do_list/routes/home/components/ValueDate.dart';
 
 import 'head_date.dart';
@@ -21,269 +24,194 @@ class _BodyState extends State<Body> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: builderAppBar(size),
-      body: Container(
-        height: size.height,
-        child: Stack(
-          children: [
-            Positioned(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    !isToday
-                        ? Padding(
-                            padding: const EdgeInsets.only(
-                              top: 14,
-                            ),
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "August 2018 ".toUpperCase(),
-                                      style: TextStyle(
-                                        fontSize: 14,
+      body: BlocBuilder<TaskBloc, TaskState>(
+        builder: (context, state) {
+          if (state is TaskLoading) {
+            return Center(child: CircularProgressIndicator());
+          }
+          if (state is TaskLoaded) {
+            return Container(
+              height: size.height,
+              child: Stack(
+                children: [
+                  Positioned(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: <Widget>[
+                          !isToday
+                              ? Padding(
+                                  padding: const EdgeInsets.only(
+                                    top: 14,
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "August 2018 ".toUpperCase(),
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                              setState(() {
+                                                isFullMonth = !isFullMonth;
+                                              });
+                                            },
+                                            child: Image.asset(
+                                              isFullMonth
+                                                  ? "assets/icons/month_up.png"
+                                                  : "assets/icons/month_down.png",
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: InkWell(
-                                        onTap: () {
-                                          setState(() {
-                                            isFullMonth = !isFullMonth;
-                                          });
-                                        },
-                                        child: Image.asset(
-                                          isFullMonth
-                                              ? "assets/icons/month_up.png"
-                                              : "assets/icons/month_down.png",
+                                      SizedBox(height: 10),
+                                      HeadDate(
+                                          width: 20, color: kGreyTextColor),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 6,
+                                          horizontal: 17,
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            for (int i = 0; i < 7; i++)
+                                              ValueDate(
+                                                index: i,
+                                              ),
+                                          ],
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 10),
-                                HeadDate(),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 6,
-                                    horizontal: 17,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      ValueDate(
-                                        index: 0,
-                                      ),
-                                      ValueDate(
-                                        index: 1,
-                                      ),
-                                      ValueDate(
-                                        index: 2,
-                                      ),
-                                      ValueDate(
-                                        index: 3,
-                                      ),
-                                      ValueDate(
-                                        index: 4,
-                                      ),
-                                      ValueDate(
-                                        index: 5,
-                                      ),
-                                      ValueDate(
-                                        index: 6,
-                                      ),
+                                      isFullMonth
+                                          ? Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                vertical: 6,
+                                                horizontal: 17,
+                                              ),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: <Widget>[
+                                                  for (int i = 7; i < 13; i++)
+                                                    ValueDate(
+                                                      index: i,
+                                                    )
+                                                ],
+                                              ),
+                                            )
+                                          : SizedBox(),
+                                      isFullMonth
+                                          ? Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                vertical: 6,
+                                                horizontal: 17,
+                                              ),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: <Widget>[
+                                                  for (int i = 13; i < 21; i++)
+                                                    ValueDate(
+                                                      index: i,
+                                                    )
+                                                ],
+                                              ),
+                                            )
+                                          : SizedBox(),
+                                      isFullMonth
+                                          ? Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                vertical: 6,
+                                                horizontal: 17,
+                                              ),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: <Widget>[
+                                                  for (int i = 21; i < 28; i++)
+                                                    ValueDate(
+                                                      index: i,
+                                                    )
+                                                ],
+                                              ),
+                                            )
+                                          : SizedBox(),
+                                      isFullMonth
+                                          ? Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                vertical: 6,
+                                                horizontal: 17,
+                                              ),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: <Widget>[
+                                                  for (int i = 28; i < 35; i++)
+                                                    ValueDate(
+                                                      index: i,
+                                                    )
+                                                ],
+                                              ),
+                                            )
+                                          : SizedBox(),
+                                      SizedBox(height: 20),
+                                      Container(
+                                        height: 1,
+                                        width: size.width,
+                                        color: kTextColor.withOpacity(.1),
+                                      )
                                     ],
                                   ),
-                                ),
-                                isFullMonth
-                                    ? Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          vertical: 6,
-                                          horizontal: 17,
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: <Widget>[
-                                            ValueDate(
-                                              index: 7,
-                                            ),
-                                            ValueDate(
-                                              index: 8,
-                                            ),
-                                            ValueDate(
-                                              index: 9,
-                                            ),
-                                            ValueDate(
-                                              index: 10,
-                                            ),
-                                            ValueDate(
-                                              index: 11,
-                                            ),
-                                            ValueDate(
-                                              index: 12,
-                                            ),
-                                            ValueDate(
-                                              index: 13,
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                    : SizedBox(),
-                                isFullMonth
-                                    ? Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          vertical: 6,
-                                          horizontal: 17,
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: <Widget>[
-                                            ValueDate(
-                                              index: 14,
-                                            ),
-                                            ValueDate(
-                                              index: 15,
-                                            ),
-                                            ValueDate(
-                                              index: 16,
-                                            ),
-                                            ValueDate(
-                                              index: 17,
-                                            ),
-                                            ValueDate(
-                                              index: 18,
-                                            ),
-                                            ValueDate(
-                                              index: 19,
-                                            ),
-                                            ValueDate(
-                                              index: 20,
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                    : SizedBox(),
-                                isFullMonth
-                                    ? Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          vertical: 6,
-                                          horizontal: 17,
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: <Widget>[
-                                            ValueDate(
-                                              index: 21,
-                                            ),
-                                            ValueDate(
-                                              index: 22,
-                                            ),
-                                            ValueDate(
-                                              index: 23,
-                                            ),
-                                            ValueDate(
-                                              index: 24,
-                                            ),
-                                            ValueDate(
-                                              index: 25,
-                                            ),
-                                            ValueDate(
-                                              index: 26,
-                                            ),
-                                            ValueDate(
-                                              index: 27,
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                    : SizedBox(),
-                                isFullMonth
-                                    ? Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          vertical: 6,
-                                          horizontal: 17,
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: <Widget>[
-                                            ValueDate(
-                                              index: 28,
-                                            ),
-                                            ValueDate(
-                                              index: 29,
-                                            ),
-                                            ValueDate(
-                                              index: 30,
-                                            ),
-                                            ValueDate(
-                                              index: 31,
-                                            ),
-                                            ValueDate(
-                                              index: 32,
-                                            ),
-                                            ValueDate(
-                                              index: 33,
-                                            ),
-                                            ValueDate(
-                                              index: 34,
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                    : SizedBox(),
-                                SizedBox(height: 20),
-                                Container(
-                                  height: 1,
-                                  width: size.width,
-                                  color: kTextColor.withOpacity(.1),
                                 )
+                              : SizedBox(),
+                          Container(
+                            width: double.infinity,
+                            color: Color(0xFFFDFDFD),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                SizedBox(height: 8),
+                                WorkListDate(date: "Today, Aug 4/2018"),
+                                for (int i = 0; i < 3; i++)
+                                  TaskCard(
+                                    index: i,
+                                    tasks: list_task_raw,
+                                  ),
+                                WorkListDate(date: "Tomorrow,Aug 5/2018"),
+                                for (int i = 3; i < 6; i++)
+                                  TaskCard(
+                                    index: i,
+                                    tasks: list_task_raw,
+                                  ),
+                                SizedBox(height: 80)
                               ],
                             ),
-                          )
-                        : SizedBox(),
-                    Container(
-                      width: double.infinity,
-                      color: Color(0xFFFDFDFD),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          SizedBox(height: 8),
-                          WorkListDate(date: "Today, Aug 4/2018"),
-                          TaskCard(
-                            index: 0,
                           ),
-                          TaskCard(
-                            index: 1,
-                          ),
-                          TaskCard(
-                            index: 2,
-                          ),
-                          WorkListDate(date: "Tomorrow,Aug 5/2018"),
-                          TaskCard(
-                            index: 3,
-                          ),
-                          TaskCard(
-                            index: 4,
-                          ),
-                          TaskCard(
-                            index: 5,
-                          ),
-                          SizedBox(height: 80)
                         ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
+            );
+          } else {
+            return Text("Something went wrong");
+          }
+        },
       ),
     );
   }

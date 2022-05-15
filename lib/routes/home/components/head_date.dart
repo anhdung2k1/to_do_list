@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
-class HeadDate extends StatelessWidget{
+class HeadDate extends StatelessWidget {
   const HeadDate({
-    Key ? key,
-}) : super(key:key);
+    required this.color,
+    required this.width,
+    Key? key,
+  }) : super(key: key);
+  final Color color;
+  final double width;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,85 +17,85 @@ class HeadDate extends StatelessWidget{
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Container(
-              width: 20,
-                child: Center(
-                  child: Text(
-                    'M',
-                    style: TextStyle(
-                      color: Color(0xFF9A9A9A),
-                    ),
-                  ),
+        children: <Widget>[
+          Container(
+            width: width,
+            child: Center(
+              child: Text(
+                'M',
+                style: TextStyle(
+                  color: color,
                 ),
+              ),
             ),
-            Container(
-              width: 20,
-                child: Center(
-                  child: Text(
-                    'T',
-                    style: TextStyle(
-                      color: Color(0xFF9A9A9A),
-                    ),
-                  ),
+          ),
+          Container(
+            width: width,
+            child: Center(
+              child: Text(
+                'T',
+                style: TextStyle(
+                  color: color,
                 ),
+              ),
             ),
-            Container(
-              width: 20,
-                child: Center(
-                child: Text(
-                  'W',
-                  style: TextStyle(
-                    color: Color(0xFF9A9A9A),
-            ),
-                  ),
+          ),
+          Container(
+            width: width,
+            child: Center(
+              child: Text(
+                'W',
+                style: TextStyle(
+                  color: color,
                 ),
+              ),
             ),
-            Container(
-              width: 20,
-                child: Center(
-                child: Text(
-                  'T',
-                  style: TextStyle(
-                    color: Color(0xFF9A9A9A),
-            ),
-                  ),
+          ),
+          Container(
+            width: width,
+            child: Center(
+              child: Text(
+                'T',
+                style: TextStyle(
+                  color: color,
                 ),
+              ),
             ),
-            Container(
-              width: 20,
-                child: Center(
-                  child: Text(
-                    'F',
-                    style: TextStyle(
-                      color: Color(0xFF9A9A9A),
-                    ),
-                  ),
+          ),
+          Container(
+            width: width,
+            child: Center(
+              child: Text(
+                'F',
+                style: TextStyle(
+                  color: color,
                 ),
+              ),
             ),
-            Container(
-              width: 20,
-                child: Center(
-                  child: Text(
-                    'S',
-                    style: TextStyle(
-                      color: Color(0xFF9A9A9A),
-                    ),
-                  ),
+          ),
+          Container(
+            width: width,
+            child: Center(
+              child: Text(
+                'S',
+                style: TextStyle(
+                  color: color,
                 ),
+              ),
             ),
-            Container(
-              width: 20,
-                child: Center(
-                  child: Text(
-                    'S',
-                    style: TextStyle(
-                      color: Color(0xFF9A9A9A),
-                    ),
-                  ),
+          ),
+          Container(
+            width: width,
+            child: Center(
+              child: Text(
+                'S',
+                style: TextStyle(
+                  color: color,
                 ),
+              ),
             ),
-          ],
+          ),
+        ],
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_list/constant/constant.dart';
-import 'package:to_do_list/models/dates.dart';
+import 'package:to_do_list/data/models/dates.dart';
 
 class ValueDate extends StatelessWidget {
   const ValueDate({

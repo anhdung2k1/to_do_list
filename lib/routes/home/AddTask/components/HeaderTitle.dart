@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_list/constant/constant.dart';
 
 class HeaderTitle extends StatelessWidget {
   const HeaderTitle({Key? key}) : super(key: key);
@@ -24,8 +25,7 @@ class HeaderTitle extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 25,
-                    backgroundImage: NetworkImage(
-                        'https://scontent.fdad1-2.fna.fbcdn.net/v/t1.6435-9/152856388_2217721551693547_8820192401419514335_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=730e14&_nc_ohc=Wxm9uLvPzmcAX-7rQ8H&_nc_ht=scontent.fdad1-2.fna&oh=00_AT-6ER74p8Mg4sVJjZhhIkmJP56kP9t2YVSaBxevBcdwPA&oe=622E4345'),
+                    backgroundImage: AssetImage(AvatarImagePath),
                   ),
                   SizedBox(width: 10),
                   Text(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_list/widgets/due_date.dart';
 
 class SelectDueDate extends StatelessWidget {
   const SelectDueDate({Key? key}) : super(key: key);
@@ -20,7 +21,13 @@ class SelectDueDate extends StatelessWidget {
           ConstrainedBox(
             constraints: BoxConstraints.tightFor(width: 90, height: 32),
             child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return DueDate();
+                      });
+                },
                 child: Text(
                   "Anytime",
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
