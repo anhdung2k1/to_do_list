@@ -11,13 +11,21 @@ class UserInform extends StatelessWidget {
   const UserInform({
     Key? key,
     required this.size,
+    required this.email,
+    required this.phoneNumber,
+    required this.photoUrl,
+    required this.name,
   }) : super(key: key);
 
   final Size size;
+  final String email;
+  final String phoneNumber;
+  final String photoUrl;
+  final String name;
 
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser!;
+    final user = FirebaseAuth.instance.currentUser;
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is UnAuthenticated) {
@@ -34,45 +42,73 @@ class UserInform extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Align(
-              alignment: Alignment.topRight,
-              child: InkWell(
-                onTap: () {},
-                child: Image.asset("assets/icons/setting.png"),
-              ),
-            ),
-            Row(
-              children: [
-                InkWell(
-                    onTap: () {},
-                    child: Container(
-                        height: 60,
-                        width: 60,
-                        decoration: BoxDecoration(
-                          color: kPrimaryColor,
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                        child: user.photoURL != null
-                            ? Image.network("${user.photoURL}")
-                            : Container())),
-                Padding(
-                  padding: EdgeInsets.all(15),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      AppTextTitle(
-                          text:
-                              "${user.displayName != null ? user.displayName : "N/A"}",
-                          fontsize: 18,
-                          textColor: kTextColor),
-                      AppTextBody(
-                          content: "${user.email}",
-                          fontsize: 16,
-                          textColor: kGreyTextColor)
-                    ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  InkWell(
+                      onTap: () {
+                        Hero(
+                          tag: '${photoUrl}',
+                          child: CircleAvatar(
+                            radius: 50,
+                            backgroundImage: NetworkImage(photoUrl),
+                          ),
+                        );
+                      },
+                      child: Container(
+                          height: 100,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            color: kPrimaryColor,
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          child: user?.photoURL != null
+                              ? Image.network(
+                                  "${user?.photoURL}",
+                                  width: 80,
+                                  height: 80,
+                                  fit: BoxFit.cover,
+                                )
+                              : Image.network(
+                                  "${photoUrl}",
+                                  width: 80,
+                                  height: 80,
+                                  fit: BoxFit.cover,
+                                ))),
+                  Padding(
+                    padding: EdgeInsets.all(15),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        AppTextTitle(
+                            text:
+                                "${user?.displayName != null ? user?.displayName : name}",
+                            fontsize: 18,
+                            textColor: kTextColor),
+                        AppTextBody(
+                            content:
+                                "${user?.email != null ? user?.email : email}",
+                            fontsize: 16,
+                            textColor: kGreyTextColor),
+                        AppTextBody(
+                            content:
+                                "${user?.phoneNumber != null ? user?.phoneNumber : phoneNumber}",
+                            fontsize: 16,
+                            textColor: kGreyTextColor)
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: IconButton(
+                        icon: Icon(Icons.exit_to_app_outlined,
+                            color: kPrimaryColor),
+                        onPressed: () =>
+                            context.read<AuthBloc>().add(SignOutRequested())),
+                  )
+                ],
+              ),
             ),
             Spacer(),
             Row(

@@ -11,24 +11,11 @@ class Task extends Equatable {
     required this.time,
     required this.confirm,
   });
-  Task copyWith({bool? confirm, String? text, String? time}) {
-    return Task(
-      text: text ?? this.text,
-      confirm: confirm ?? this.confirm,
-      time: time ?? this.time,
-    );
-  }
+
+  get isSelected => true;
 
   @override
   List<Object?> get props => [text, time, confirm];
-
-  static Task fromSnapshot(DocumentSnapshot snapshot) {
-    Task task = Task(
-        confirm: snapshot['confirm'],
-        text: snapshot['text'],
-        time: snapshot['time']);
-    return task;
-  }
 
   static Task fromJson(Map<String, dynamic> json) {
     Task task = Task(
@@ -44,47 +31,8 @@ class Task extends Equatable {
         'confirm': this.confirm,
         'time': this.time,
       };
+  Task.fromDocumentSnapshot(DocumentSnapshot<Map<String, dynamic>> doc)
+      : text = doc.data()!["text"],
+        confirm = doc.data()!["confirm"],
+        time = doc.data()!["time"];
 }
-
-List<Task> list_task_raw = [
-  Task(
-    text: 'Task 1',
-    time: '10:00',
-    confirm: false,
-  ),
-  Task(
-    text: 'Task 2',
-    time: '10:00',
-    confirm: false,
-  ),
-  Task(
-    text: 'Task 3',
-    time: '10:00',
-    confirm: false,
-  ),
-  Task(
-    text: 'Task 4',
-    time: '10:00',
-    confirm: false,
-  ),
-  Task(
-    text: 'Task 5',
-    time: '10:00',
-    confirm: false,
-  ),
-  Task(
-    text: 'Task 6',
-    time: '10:00',
-    confirm: false,
-  ),
-  Task(
-    text: 'Task 7',
-    time: '10:00',
-    confirm: false,
-  ),
-  Task(
-    text: 'Task 8',
-    time: '10:00',
-    confirm: false,
-  ),
-];

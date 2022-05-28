@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_list/constant/constant.dart';
 import 'package:to_do_list/routes/home/forgot_password/forgot_password_screen.dart';
+import 'package:to_do_list/routes/home/home_screen.dart';
 import 'package:to_do_list/routes/sign_in/sign_in_screen.dart';
 import 'package:to_do_list/widgets/AppText.dart';
 import 'package:to_do_list/widgets/default_button.dart';
@@ -48,8 +49,7 @@ class _SignUpBodyState extends State<SignUpBody> {
     Size size = MediaQuery.of(context).size;
     return BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
       if (state is Authenticated) {
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => SignInScreen()));
+        Navigator.pushNamed(context, HomeScreen.routeName);
       }
       if (state is AuthError) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(

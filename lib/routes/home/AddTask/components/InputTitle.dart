@@ -10,6 +10,7 @@ class InputTitle extends StatelessWidget {
       height: 66,
       child: TextFormField(
         controller: controller,
+        onSaved: (value) => controller.text = value!,
         showCursor: false,
         decoration: InputDecoration(
             hintText: 'Title',

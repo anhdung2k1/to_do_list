@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
 import '../routes/home/components/ValueDate.dart';
 
 class Date_Due extends StatelessWidget {

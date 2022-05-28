@@ -1,20 +1,20 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_list/constant/constant.dart';
+import 'package:to_do_list/data/models/profile.dart';
 import 'package:to_do_list/routes/home/Profile/components/statisticCircle.dart';
 import 'package:to_do_list/widgets/AppText.dart';
 
 class StatisticCard extends StatelessWidget {
   const StatisticCard({
-    required this.event,
-    required this.toDo,
-    required this.quickNote,
+    required this.list_profile,
     Key? key,
   }) : super(key: key);
-  final double event, toDo, quickNote;
-
+  final List<Profile> list_profile;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final auth = FirebaseAuth.instance.currentUser;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
       child: Container(
@@ -33,25 +33,22 @@ class StatisticCard extends StatelessWidget {
           children: [
             AppTextTitle(
                 text: "Statistic", fontsize: 18, textColor: kTextColor),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                StatisticCircle(
-                  color: kPrimaryColor,
-                  text: event.toString() + "%",
-                  title: "Events",
-                ),
-                StatisticCircle(
-                  color: kBlueTaskColor,
-                  text: toDo.toString() + "%",
-                  title: "To do",
-                ),
-                StatisticCircle(
-                  color: kPurpleTaskColor,
-                  text: quickNote.toString() + "%",
-                  title: "Quick Notes",
-                )
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  for (var i = 0; i < list_profile.length; i++)
+                    if (auth?.email == list_profile[i].email)
+                      for (var j = 0; j < list_profile[i].listTask.length; j++)
+                        StatisticCircle(
+                          color: Color(int.parse(list_profile[i].listColor[j])),
+                          text: list_profile[i].listPercentage[j].toString() +
+                              "%",
+                          title: list_profile[i].listTask[j],
+                        ),
+                ],
+              ),
             )
           ],
         ),
